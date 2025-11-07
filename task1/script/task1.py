@@ -1,0 +1,45 @@
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+data = pd.read_csv('task1.csv')
+
+plt.style.use('default')
+
+plt.figure(figsize=(8, 6))
+plt.plot(data['process count'], data['time ms'], 'bo-', linewidth=2, markersize=8)
+plt.xlabel('Количество процессов')
+plt.ylabel('Время (мс)')
+plt.title('Зависимость времени выполнения от количества процессов')
+plt.grid(True, alpha=0.3)
+plt.xticks(data['process count'])
+plt.tight_layout()
+plt.savefig('time_vs_process_count.png', dpi=300, bbox_inches='tight')
+plt.close()
+
+plt.figure(figsize=(8, 6))
+plt.plot(data['process count'], data['speedup ratio'], 'ro-', linewidth=2, markersize=8)
+plt.plot(data['process count'], data['process count'], 'k--', linewidth=1, alpha=0.7)
+plt.xlabel('Количество процессов')
+plt.ylabel('Коэффициент ускорения')
+plt.title('Зависимость коэффициента ускорения от количества процессов')
+plt.grid(True, alpha=0.3)
+plt.legend()
+plt.xticks(data['process count'])
+plt.tight_layout()
+plt.savefig('speedup_vs_process_count.png', dpi=300, bbox_inches='tight')
+plt.close()
+
+plt.figure(figsize=(8, 6))
+plt.plot(data['process count'], data['efficency'], 'go-', linewidth=2, markersize=8)
+plt.axhline(y=1, color='k', linestyle='--', alpha=0.7)
+plt.xlabel('Количество процессов')
+plt.ylabel('Эффективность')
+plt.title('Зависимость эффективности от количества процессов')
+plt.grid(True, alpha=0.3)
+plt.legend()
+plt.xticks(data['process count'])
+plt.ylim(0, 1.2)
+plt.tight_layout()
+plt.savefig('efficiency_vs_process_count.png', dpi=300, bbox_inches='tight')
+plt.close()
